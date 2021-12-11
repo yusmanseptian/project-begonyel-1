@@ -54,6 +54,9 @@ class UserController extends Controller
 
         // simpan data yg telah diterima ke dalam table
         $user->save();
+
+        // redirect ke halaman users
+        return redirect('users');
     }
 
 }
