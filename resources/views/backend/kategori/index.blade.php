@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Users</h1>
+                    <h1 class="m-0 text-dark">Kategori</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <a href="{{ route('users-add') }}" class="btn btn-primary" >Tambah</a>
+                            <a href="{{ route('kategori-add') }}" class="btn btn-primary" >Tambah</a>
                         </h3>
                     </div>
                     <!-- /.card-header -->
@@ -40,27 +40,22 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Level</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($users as $key => $user)
+                                @forelse ($kategoris as $key => $kategori)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        {{-- <td> @if($user->level == '1') {{ 'Admin' }} @else {{ 'Kasir' }}  @endif </td> --}}
-                                        <td> {{ $user->level == '1' ? 'Admin' : 'Kasir'  }}</td>
+                                        <td>{{ $kategori->nama_kategori }}</td>
                                         <td>
-                                            <a href="{{ route('users-edit', $user->id ) }}" class="btn btn-sm btn-success">Edit</a>
-                                            <a href="{{ route('users-delete', $user->id ) }}" onclick="return confirm('Yakin hapus data ini?')" class="btn btn-sm btn-danger">Hapus</a>
+                                            <a href="{{ route('kategori-edit', $kategori->id ) }}" class="btn btn-sm btn-success">Edit</a>
+                                            <a href="{{ route('kategori-delete', $kategori->id ) }}" onclick="return confirm('Yakin hapus data ini?')" class="btn btn-sm btn-danger">Hapus</a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Data tidak ada</td>
+                                        <td colspan="3" class="text-center">Data tidak ada</td>
                                     </tr>
                                 @endforelse
 

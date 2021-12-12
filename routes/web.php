@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
@@ -24,3 +24,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
 Route::get('/users/add', [App\Http\Controllers\UserController::class, 'create'])->name('users-add');
 Route::post('/users/store', [App\Http\Controllers\UserController::class, 'store'])->name('users-store');
+Route::get('/users/edit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('users-edit');
+Route::post('/users/update', [App\Http\Controllers\UserController::class, 'update'])->name('users-update');
+Route::get('/users/delete/{id}', [App\Http\Controllers\UserController::class, 'delete'])->name('users-delete');
+
+Route::get('/kategori', [App\Http\Controllers\KategoriController::class, 'index'])->name('kategori');
+Route::get('/kategori/add', [App\Http\Controllers\KategoriController::class, 'create'])->name('kategori-add');
+Route::post('/kategori/store', [App\Http\Controllers\KategoriController::class, 'store'])->name('kategori-store');
+Route::get('/kategori/edit/{id}', [App\Http\Controllers\KategoriController::class, 'edit'])->name('kategori-edit');
+Route::post('/kategori/update', [App\Http\Controllers\KategoriController::class, 'update'])->name('kategori-update');
+Route::get('/kategori/delete/{id}', [App\Http\Controllers\KategoriController::class, 'delete'])->name('kategori-delete');
