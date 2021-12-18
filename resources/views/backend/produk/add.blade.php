@@ -26,64 +26,58 @@
             <div class="row">
                 {{-- content tabel --}}
                 <div class="col-12">
+                    @if ($message = Session::get('pesan'))
+
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ $message }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Tambah User</h3>
+                            <h3 class="card-title">Tambah Produk</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="{{ route('users-store') }}" method="POST">
+                        <form role="form" action="{{ route('produk-store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{ old('name') }}" placeholder="Enter Name">
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    <label for="nama_produk">Nama Produk</label>
+                                    <input type="text" class="form-control" id="nama_produk" name="nama_produk"
+                                        value="{{ old('nama_produk') }}" placeholder="Enter Name">
+                                    <span class="text-danger">{{ $errors->first('nama_produk') }}</span>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input type="text" class="form-control" id="email" name="email"
-                                        placeholder="Enter email" value="{{ old('email') }}">
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    <label for="harga">Harga</label>
+                                    <input type="number" class="form-control" id="harga" name="harga"
+                                        placeholder="Enter harga" value="{{ old('harga') }}">
+                                    <span class="text-danger">{{ $errors->first('harga') }}</span>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="jk">Jenis Kelamin</label>
-                                    <select name="jk" id="jk" class="form-control">
-                                        <option value="">--Pilih Jenis Kelamin--</option>
-                                        <option value="L" @if (old('jk') == 'L') selected="selected" @endif>Laki-laki</option>
-                                        <option value="P" @if (old('jk') == 'P') selected="selected" @endif>Perempuan</option>
+                                    <label for="gambar">Gambar</label>
+                                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                                    <input type="file" style="height: 45px;" class="form-control" id="gambar"
+                                        name="gambar" placeholder="Enter gambar">
+                                    <span class="text-danger">{{ $errors->first('gambar') }}</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="kategori_id">Kategori</label>
+                                    <select name="kategori_id" id="kategori_id" class="form-control">
+                                        <option value="">--Pilih Kategori--</option>
+                                        @foreach ($kategoris as $kt)
+                                            <option value="{{ $kt->id }}">{{ $kt->nama_kategori }}</option>
+                                        @endforeach
                                     </select>
-                                    <span class="text-danger">{{ $errors->first('jk') }}</span>
+                                    <span class="text-danger">{{ $errors->first('kategori_id') }}</span>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="level">Level</label>
-                                    <select name="level" id="level" class="form-control">
-                                        <option value="">--Pilih Level--</option>
-                                        <option value="1" @if (old('level') == '1') selected="selected" @endif>Admin</option>
-                                        <option value="2" @if (old('level') == '2') selected="selected" @endif>Kasir</option>
-                                    </select>
-                                    <span class="text-danger">{{ $errors->first('level') }}</span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="no_telp">No. HP</label>
-                                    <input type="number" class="form-control" id="no_telp" name="no_telp"
-                                        placeholder="Enter No. HP" value="{{ old('no_telp') }}">
-                                    <span class="text-danger">{{ $errors->first('no_telp') }}</span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Password" value="{{ old('password') }}">
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                                </div>
-
 
                             </div>
                             <!-- /.card-body -->
@@ -98,4 +92,19 @@
         </div>
     </section>
 
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#gambar');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 @endsection
