@@ -24,46 +24,24 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="{{ route('home') }}" class="nav-link {{ set_active('home') }} ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ route('users') }}" class="nav-link">
+            <a href="{{ route('users') }}" class="nav-link {{ set_active(['users','users-add','users-edit']) }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Users
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('kategori') }}" class="nav-link">
+            <a href="{{ route('kategori') }}" class="nav-link {{ set_active(['kategori','kategori-add','kategori-edit']) }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Kategori
@@ -71,7 +49,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('produk') }}" class="nav-link">
+            <a href="{{ route('produk') }}" class="nav-link {{ set_active(['produk','produk-add','produk-edit']) }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Produk

@@ -9,7 +9,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategoris = Kategori::all();
+        $kategoris = Kategori::all();  //SELECT * FROM kategoris
 
         return view('backend.kategori.index', [
             'kategoris' => $kategoris,

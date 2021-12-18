@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <a href="{{ route('users-add') }}" class="btn btn-primary" >Tambah</a>
+                            <a href="{{ route('produk-add') }}" class="btn btn-primary" >Tambah</a>
                         </h3>
                     </div>
                     <!-- /.card-header -->
@@ -40,22 +40,26 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Level</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Gambar</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($users as $key => $user)
+                                @forelse ($produks as $key => $produk)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        {{-- <td> @if($user->level == '1') {{ 'Admin' }} @else {{ 'Kasir' }}  @endif </td> --}}
-                                        <td> {{ $user->level == '1' ? 'Admin' : 'Kasir'  }}</td>
+                                        <td>{{ $produk->nama_produk }}</td>
+                                        <td>{{ $produk->kategori->nama_kategori }}</td>
+                
+                                        <td> Rp. {{ number_format($produk->harga)  }}</td>
                                         <td>
-                                            <a href="{{ route('users-edit', $user->id ) }}" class="btn btn-sm btn-success">Edit</a>
-                                            <a href="{{ route('users-delete', $user->id ) }}" onclick="return confirm('Yakin hapus data ini?')" class="btn btn-sm btn-danger">Hapus</a>
+                                            <img src="{{ asset('storage/'.$produk->gambar) }}" alt="">    
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('produk-edit', $produk->id ) }}" class="btn btn-sm btn-success">Edit</a>
+                                            <a href="{{ route('produk-delete', $produk->id ) }}" onclick="return confirm('Yakin hapus data ini?')" class="btn btn-sm btn-danger">Hapus</a>
                                         </td>
                                     </tr>
                                 @empty

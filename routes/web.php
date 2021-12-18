@@ -34,3 +34,10 @@ Route::post('/kategori/store', [App\Http\Controllers\KategoriController::class, 
 Route::get('/kategori/edit/{id}', [App\Http\Controllers\KategoriController::class, 'edit'])->name('kategori-edit');
 Route::post('/kategori/update', [App\Http\Controllers\KategoriController::class, 'update'])->name('kategori-update');
 Route::get('/kategori/delete/{id}', [App\Http\Controllers\KategoriController::class, 'delete'])->name('kategori-delete');
+
+Route::get('/produk', [App\Http\Controllers\ProdukController::class, 'index'])->name('produk');
+Route::get('/produk/add', [App\Http\Controllers\ProdukController::class, 'create'])->name('produk-add');
+Route::post('/produk/store', [App\Http\Controllers\ProdukController::class, 'store'])->name('produk-store');
+Route::get('/produk/edit/{id}', [App\Http\Controllers\ProdukController::class, 'edit'])->name('produk-edit');
+Route::post('/produk/update', [App\Http\Controllers\ProdukController::class, 'update'])->name('produk-update');
+Route::get('/produk/delete/{id}', [App\Http\Controllers\ProdukController::class, 'delete'])->name('produk-delete');

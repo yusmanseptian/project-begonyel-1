@@ -13,4 +13,9 @@ class Kategori extends Model
         'nama_kategori'
     ];
 
+    // hubungkan tabel kategoris ke tabel produks
+    public function produks() {
+        return $this->hasMany(Product::class,'kategori_id','id');
+    }
+
 }
